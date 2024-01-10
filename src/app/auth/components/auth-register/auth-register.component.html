@@ -1,11 +1,11 @@
-<form (ngSubmit)="createUser()" [formGroup]="registerForm">
+<p-toast></p-toast>
+<form (ngSubmit)="createUser()" [formGroup]="registerForm" autocomplete="true">
   <div
     class="grid flex-column justify-content-center align-items-center surface-100 h-screen"
   >
     <div>
       <img
-        class="border-round-lg mt-8"
-        s
+        class="border-round-lg"
         src="assets/tasks.jpg"
         alt=" logo Netberry  "
       />
@@ -30,7 +30,7 @@
           placeholder="Email"
           formControlName="email"
           id="email"
-          type="text"
+          type="email"
           class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
         />
       </div>
@@ -38,9 +38,10 @@
         <label>Password</label>
         <div class="card flex justify-content-center">
           <p-password
-            [(ngModel)]="value"
+            value="value"
             [toggleMask]="true"
             formControlName="password"
+            autocomplete="true"
           ></p-password>
         </div>
       </div>
@@ -55,6 +56,11 @@
           >Aquí</a
         >
       </p>
+    </div>
+    <div class="text-orange-500 mt-1 text-center">
+      <p *ngIf="validField('name')">El nombre es obligatorio</p>
+      <p *ngIf="validField('email')">El email es obligatorio</p>
+      <p *ngIf="validField('password')">El password es obligatorio</p>
     </div>
   </div>
 </form>

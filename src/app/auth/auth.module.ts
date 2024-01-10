@@ -8,7 +8,7 @@ import { RegisterComponent } from './pages/register/register.component';
 import { AuthLoginComponent } from './components/auth-login/auth-login.component';
 import { AuthRegisterComponent } from './components/auth-register/auth-register.component';
 import { PrimeNgModule } from '../prime-ng/prime-ng.module';
-
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     LoginComponent,
@@ -21,6 +21,7 @@ import { PrimeNgModule } from '../prime-ng/prime-ng.module';
     AuthRoutingModule,
     PrimeNgModule,
     ReactiveFormsModule,
+    HttpClientModule,
   ],
 })
 export class AuthModule {}
