@@ -1,0 +1,57 @@
+<form>
+  <div
+    class="grid flex-column justify-content-center align-items-center surface-100 h-screen"
+  >
+    <div>
+      <img
+        class="border-round-lg"
+        src="assets/tasks.jpg"
+        alt=" logo Netberry  "
+      />
+    </div>
+    <div>
+      <h2 class="text-orange-500 mt-6">Login</h2>
+    </div>
+    <div>
+      <div class="field">
+        <label for="name">Nombre</label>
+        <input
+          placeholder="Nombre"
+          id="name"
+          type="text"
+          class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+        />
+      </div>
+      <div class="field">
+        <label for="email">E-mail</label>
+        <input
+          placeholder="Email"
+          id="email"
+          type="text"
+          class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+        />
+      </div>
+      <div class="field">
+        <label>Password</label>
+        <div class="card flex justify-content-center">
+          <p-password
+            [(ngModel)]="value"
+            [toggleMask]="true"
+            formControlName="password"
+          ></p-password>
+        </div>
+      </div>
+    </div>
+    <div class="my-3">
+      <p-button type="submit" severity="warning">Enviar</p-button>
+    </div>
+    <div>
+      <p>
+        Registrate
+        <a class="cursor-pointer text-orange-500" routerLink="/auth/register"
+          >Aquí</a
+        >
+      </p>
+    </div>
+  </div>
+</form>
