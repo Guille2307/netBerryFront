@@ -7,9 +7,26 @@ import { PrimeNgModule } from '../prime-ng/prime-ng.module';
 import { SharedModule } from '../shared/shared.module';
 import { HiUserComponent } from './components/hi-user/hi-user.component';
 import { TasklistComponent } from './components/tasklist/tasklist.component';
+import { MyTasksComponent } from './components/my-tasks/my-tasks.component';
+import { HttpClientModule } from '@angular/common/http';
+import { TasklistdetailComponent } from './components/tasklistdetail/tasklistdetail.component';
+import { MytaskeditComponent } from './components/mytaskedit/mytaskedit.component';
 
 @NgModule({
-  declarations: [DashboardComponent, HiUserComponent, TasklistComponent],
-  imports: [CommonModule, DashboardRoutingModule, PrimeNgModule, SharedModule],
+  declarations: [
+    DashboardComponent,
+    HiUserComponent,
+    TasklistComponent,
+    MyTasksComponent,
+    TasklistdetailComponent,
+    MytaskeditComponent,
+  ],
+  imports: [
+    CommonModule,
+    DashboardRoutingModule,
+    PrimeNgModule,
+    SharedModule,
+    HttpClientModule,
+  ],
 })
 export class DashboardModule {}

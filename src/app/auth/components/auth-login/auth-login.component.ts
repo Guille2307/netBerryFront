@@ -35,7 +35,6 @@ export class AuthLoginComponent {
     }
     this.authService.login(this.loginForm.value).subscribe({
       next: (resp) => {
-        console.log(resp);
         this.router.navigateByUrl('/dashboard');
       },
       error: (err) => {

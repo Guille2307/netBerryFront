@@ -24,6 +24,12 @@ export class MenubarComponent {
           {
             label: 'Mis tareas',
             icon: 'pi pi-fw pi-user-edit',
+            routerLink: 'mytask',
+          },
+          {
+            label: 'Listas de tareas',
+            icon: 'pi pi-fw pi-user-edit',
+            routerLink: '/dashboard',
           },
         ],
       },
