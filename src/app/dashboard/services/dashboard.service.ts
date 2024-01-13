@@ -27,4 +27,14 @@ export class DashboardService {
   getUserTaskById() {
     return this.http.get(`${base_url}/users/${this.uid}`);
   }
+  getTaskById(id: string) {
+    return this.http.get(`${base_url}/tasks/${id}`);
+  }
+
+  upDatetasById(id: string, formData: any) {
+    return this.http.patch(`${base_url}/tasks/${id}`, formData);
+  }
+  deleteTask(id: string) {
+    return this.http.delete(`${base_url}/tasks/${id}`);
+  }
 }

@@ -61,4 +61,11 @@ export class AuthService {
     localStorage.clear();
     this.router.navigateByUrl('login');
   }
+
+  getUser() {
+    return this.http.get(`${base_url}/users`);
+  }
+  getUserById(id: string) {
+    return this.http.get(`${base_url}/users/${id}`);
+  }
 }

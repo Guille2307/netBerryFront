@@ -11,6 +11,8 @@ import { MyTasksComponent } from './components/my-tasks/my-tasks.component';
 import { HttpClientModule } from '@angular/common/http';
 import { TasklistdetailComponent } from './components/tasklistdetail/tasklistdetail.component';
 import { MytaskeditComponent } from './components/mytaskedit/mytaskedit.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { PipesModule } from './pipes/pipes.module';
 
 @NgModule({
   declarations: [
@@ -27,6 +29,8 @@ import { MytaskeditComponent } from './components/mytaskedit/mytaskedit.componen
     PrimeNgModule,
     SharedModule,
     HttpClientModule,
+    ReactiveFormsModule,
+    PipesModule,
   ],
 })
 export class DashboardModule {}

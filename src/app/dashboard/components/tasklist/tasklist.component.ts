@@ -19,7 +19,6 @@ export class TasklistComponent {
 
   ngOnInit() {
     this.dashboardService.getAllTask().subscribe((resp: any) => {
-      console.log(resp);
       this.task = resp.task;
     });
   }

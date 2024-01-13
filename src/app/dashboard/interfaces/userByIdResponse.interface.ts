@@ -11,11 +11,10 @@ export interface Task {
   description: string;
   tags: Tag[];
   createdBy: string;
-  assignedto: any[];
   createdAt: Date;
   updatedAt: Date;
   __v: number;
-  assignedTo: string[];
+  assignedTo: string;
 }
 export interface Tag {
   _id: string;

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DashboardService } from '../../services/dashboard.service';
 import { Task } from '../../interfaces/userByIdResponse.interface';
+import { AuthService } from 'src/app/auth/services/auth.service';
 
 @Component({
   selector: 'my-tasks',
@@ -9,12 +10,14 @@ import { Task } from '../../interfaces/userByIdResponse.interface';
 })
 export class MyTasksComponent implements OnInit {
   public task: any[] = [];
+  public uid!: string;
 
-  constructor(private dashboardService: DashboardService) {}
+  constructor(private authService: AuthService) {}
 
   ngOnInit() {
-    this.dashboardService.getUserTaskById().subscribe((user: any) => {
-      this.task = user.user.task;
+    this.uid = this.authService.uid;
+    this.authService.getUserById(this.uid).subscribe((resp: any) => {
+      this.task = resp.user.task;
     });
   }
 }

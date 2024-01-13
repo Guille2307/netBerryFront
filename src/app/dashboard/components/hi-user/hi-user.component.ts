@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { RenewTokenResponse } from 'src/app/auth/interfaces/renewToken.interface';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { User } from 'src/app/models/user.model';
 
@@ -10,8 +9,11 @@ import { User } from 'src/app/models/user.model';
 })
 export class HiUserComponent implements OnInit {
   public user: User = this.authService.user;
-
-  constructor(public authService: AuthService) {}
+  public imgUrl = '';
+  constructor(public authService: AuthService) {
+    this.imgUrl = this.authService.user.imageUrl;
+    console.log(this.imgUrl);
+  }
 
   ngOnInit(): void {}
 
