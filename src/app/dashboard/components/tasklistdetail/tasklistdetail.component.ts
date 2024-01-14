@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ConfirmationService, MessageService } from 'primeng/api';
-import { Task } from '../../interfaces/userByIdResponse.interface';
+import { Tag, Task } from '../../interfaces/userByIdResponse.interface';
 import { DashboardService } from '../../services/dashboard.service';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { User } from 'src/app/models/user.model';
@@ -18,11 +18,14 @@ export class TasklistdetailComponent implements OnInit {
   public statusOption: any[] | undefined;
   public selectedStatus: any | undefined;
   public users: User[] = [];
+  public task: Task[] = [];
+  public tags: Tag[] = [];
   public editTaskForm = this.fb.group({
     title: ['', [Validators.required]],
     description: ['', [Validators.required]],
     status: [''],
     assignedTo: [''],
+    tags: [''],
   });
 
   get currentTask(): Task {
@@ -48,6 +51,10 @@ export class TasklistdetailComponent implements OnInit {
 
     this.authService.getUser().subscribe((resp: any) => {
       this.users = resp.users;
+    });
+
+    this.dashboardService.getAllTags().subscribe((tags: any) => {
+      this.tags = tags.tags;
     });
     this.refillFom();
   }

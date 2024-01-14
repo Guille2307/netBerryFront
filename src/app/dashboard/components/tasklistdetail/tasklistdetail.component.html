@@ -1,3 +1,11 @@
+<div class="mt-7 mr-1 flex justify-content-end">
+  <p-button
+    icon="pi pi-arrow-left"
+    label="Volver"
+    severity="warning"
+    routerLink="/dashboard"
+  ></p-button>
+</div>
 <form
   autocomplete="true"
   [formGroup]="editTaskForm"
@@ -50,6 +58,10 @@
         </select>
       </div>
 
+      <div class="field mt-4">
+        <label for="assignedTo">Selecciona un usuario</label>
+      </div>
+
       <div class="field mb-4 w-full">
         <select
           id="assignedTo"
@@ -57,8 +69,27 @@
           style="appearance: auto"
           formControlName="assignedTo"
         >
+          <option>Seleccione un tag</option>
+          <option *ngFor="let user of users" value="{{ user.uid }}">
+            {{ user.name }}
+          </option>
+        </select>
+      </div>
+      <div class="field mt-4">
+        <label for="tags">Selecciona un tag</label>
+      </div>
+
+      <div class="field mb-4 w-full">
+        <select
+          id="tags"
+          class="w-full text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round outline-none focus:border-primary"
+          style="appearance: auto"
+          formControlName="tags"
+        >
           <option>Seleccione un usuario</option>
-          <option *ngFor="let user of users">{{ user.name }}</option>
+          <option *ngFor="let tag of tags" value="{{ tag._id }}">
+            {{ tag.name }}
+          </option>
         </select>
       </div>
     </div>

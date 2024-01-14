@@ -21,7 +21,7 @@ export class DashboardService {
   public desde = 0;
 
   getAllTask() {
-    return this.http.get(`${base_url}/tasks?desde=${this.desde}`);
+    return this.http.get(`${base_url}/tasks`);
   }
 
   getUserTaskById() {
@@ -36,5 +36,8 @@ export class DashboardService {
   }
   deleteTask(id: string) {
     return this.http.delete(`${base_url}/tasks/${id}`);
+  }
+  getAllTags() {
+    return this.http.get(`${base_url}/tags`);
   }
 }

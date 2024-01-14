@@ -1,5 +1,21 @@
-<div class="m-5">
-  <p-dataView #dv [value]="task">
+<div class="m-5 h-screen" [ngClass]="{ 'h-screen': dimention < 5 }">
+  <div class="mt-7 mb-7 flex justify-content-end">
+    <p-button
+      icon="pi pi-arrow-left"
+      label="Volver"
+      severity="warning"
+      routerLink="/dashboard"
+    ></p-button>
+  </div>
+  <div *ngIf="dimention <= 0">
+    <h1 class="text-orange-500">No tienes tareas asignadas</h1>
+    <div
+      class="bg-cover bg-center border-primary-500 border-round h-30rem"
+      style="background-image: url('assets/image/loginBack.jpg')"
+    ></div>
+  </div>
+
+  <p-dataView #dv [value]="task" *ngIf="dimention > 0">
     <ng-template pTemplate="list" let-task>
       <div class="grid grid-nogutter">
         <div class="col-12" *ngFor="let item of task; let first = first">
@@ -13,9 +29,11 @@
               <div
                 class="flex flex-column align-items-center sm:align-items-start gap-3"
               >
-                <div class="text-2xl font-bold text-900">{{ item.title }}</div>
+                <div class="text-2xl font-bold text-900">
+                  {{ item.title }}
+                </div>
                 <p>{{ item.description }}</p>
-                <div class="">
+                <div>
                   <p-tag
                     *ngFor="let tag of item.tags"
                     [value]="tag.name"

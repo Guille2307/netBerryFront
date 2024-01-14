@@ -9,7 +9,7 @@ export interface Task {
   _id: string;
   title: string;
   description: string;
-  tags: Tag[];
+  tags: string;
   createdBy: string;
   createdAt: Date;
   updatedAt: Date;

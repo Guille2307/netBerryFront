@@ -10,12 +10,11 @@ import { User } from 'src/app/models/user.model';
 export class HiUserComponent implements OnInit {
   public user: User = this.authService.user;
   public imgUrl = '';
-  constructor(public authService: AuthService) {
-    this.imgUrl = this.authService.user.imageUrl;
+  constructor(public authService: AuthService) {}
+
+  ngOnInit(): void {
     console.log(this.imgUrl);
   }
-
-  ngOnInit(): void {}
 
   public visible: boolean = false;
 }

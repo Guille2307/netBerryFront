@@ -9,8 +9,9 @@ import { AuthService } from 'src/app/auth/services/auth.service';
   styleUrls: ['./my-tasks.component.scss'],
 })
 export class MyTasksComponent implements OnInit {
-  public task: any[] = [];
+  public task!: Task[];
   public uid!: string;
+  public dimention!: number;
 
   constructor(private authService: AuthService) {}
 
@@ -18,6 +19,7 @@ export class MyTasksComponent implements OnInit {
     this.uid = this.authService.uid;
     this.authService.getUserById(this.uid).subscribe((resp: any) => {
       this.task = resp.user.task;
+      this.dimention = this.task.length;
     });
   }
 }

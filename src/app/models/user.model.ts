@@ -1,4 +1,5 @@
 import { environment } from 'src/environments/environment';
+import { Task } from '../dashboard/interfaces/userByIdResponse.interface';
 
 const base_url = environment.base_url;
 
@@ -7,7 +8,7 @@ export class User {
     public name: string,
     public email: string,
     public password?: string,
-    public task?: string,
+    public task?: Task[],
     public img?: string,
     public uid?: string
   ) {}
@@ -22,5 +23,8 @@ export class User {
     } else {
       return `${base_url}/upload/users/no-image`;
     }
+  }
+  get imgToModel() {
+    return this.img;
   }
 }

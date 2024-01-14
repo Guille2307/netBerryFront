@@ -48,10 +48,6 @@ export class MenubarComponent {
         icon: 'pi pi-fw pi-align-justify',
         items: [
           {
-            label: 'Listado de tags',
-            icon: 'pi pi-fw pi-align-center',
-          },
-          {
             label: 'Nuevo tag',
             icon: 'pi pi-fw pi-pencil',
           },
