@@ -32,7 +32,7 @@ export class TagsComponent {
     this.dashboardService.newTag(this.tagForm.value).subscribe({
       next: (resp) => {
         this.messageService.add({
-          severity: 'Warn',
+          severity: 'warn',
           summary: 'Successful',
           detail: 'Tag creado Correctamente',
         });
