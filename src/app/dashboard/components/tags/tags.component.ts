@@ -14,7 +14,7 @@ export class TagsComponent {
   public FormSubmitted = false;
 
   public tagForm = this.fb.group({
-    name: ['', [Validators.required]],
+    name: ['#', [Validators.required]],
   });
 
   constructor(
