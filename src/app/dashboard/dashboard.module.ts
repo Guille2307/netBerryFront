@@ -13,6 +13,7 @@ import { TasklistdetailComponent } from './components/tasklistdetail/tasklistdet
 import { MytaskeditComponent } from './components/mytaskedit/mytaskedit.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PipesModule } from './pipes/pipes.module';
+import { NewTaskComponent } from './components/new-task/new-task.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { PipesModule } from './pipes/pipes.module';
     MyTasksComponent,
     TasklistdetailComponent,
     MytaskeditComponent,
+    NewTaskComponent,
   ],
   imports: [
     CommonModule,

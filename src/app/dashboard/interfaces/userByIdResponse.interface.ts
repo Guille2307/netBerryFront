@@ -9,16 +9,16 @@ export interface Task {
   _id: string;
   title: string;
   description: string;
-  tags: string;
+  tags?: Tag[];
   createdBy: string;
   createdAt: Date;
   updatedAt: Date;
   __v: number;
-  assignedTo: string;
+  assignedTo?: User;
 }
 export interface Tag {
   _id: string;
   name: string;
-  tasks: string[];
+  tasks: Tag[];
   __v: number;
 }

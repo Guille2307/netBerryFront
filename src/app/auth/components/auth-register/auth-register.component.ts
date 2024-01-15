@@ -34,7 +34,7 @@ export class AuthRegisterComponent {
     }
     this.authService.createUser(this.registerForm.value).subscribe({
       next: (resp) => {
-        this.router.navigateByUrl('/auth/login');
+        this.router.navigateByUrl('/login');
       },
       error: (err) => {
         this.messageService.add({

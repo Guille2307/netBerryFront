@@ -3,19 +3,19 @@
     icon="pi pi-arrow-left"
     label="Volver"
     severity="warning"
-    routerLink="/dashboard/mytask"
+    routerLink="/dashboard"
   ></p-button>
 </div>
 <form
   autocomplete="true"
-  [formGroup]="editMyTaskForm"
+  [formGroup]="createTaskForm"
   (ngSubmit)="postAndConfirmation()"
 >
   <div
     class="grid flex-column justify-content-center align-items-center surface-100 h-screen"
   >
     <div>
-      <h2 class="text-orange-500">Editar mis tarea asignadas</h2>
+      <h2 class="text-orange-500 mb-5">Crear nueva tarea</h2>
     </div>
     <div>
       <div class="field">
@@ -57,26 +57,8 @@
           <option *ngFor="let status of statusOption">{{ status.name }}</option>
         </select>
       </div>
-
       <div class="field mt-4">
-        <label for="assignedTo">Selecciona un usuario</label>
-      </div>
-
-      <div class="field mb-4 w-full">
-        <select
-          id="assignedTo"
-          class="w-full text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round outline-none focus:border-primary"
-          style="appearance: auto"
-          formControlName="assignedTo"
-        >
-          <option>Seleccione un usuario</option>
-          <option *ngFor="let user of users" value="{{ user.uid }}">
-            {{ user.name }}
-          </option>
-        </select>
-      </div>
-      <div class="field mt-4">
-        <label for="tags">Selecciona un tag</label>
+        <label for="tags">Selecciona un usuario</label>
       </div>
 
       <div class="field mb-4 w-full">
@@ -85,6 +67,24 @@
           class="w-full text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round outline-none focus:border-primary"
           style="appearance: auto"
           formControlName="tags"
+        >
+          <option>Seleccione un usuario</option>
+          <option *ngFor="let user of users" value="{{ user.uid }}">
+            {{ user.name }}
+          </option>
+        </select>
+      </div>
+
+      <div class="field mt-4">
+        <label for="assignedTo">Selecciona un tag</label>
+      </div>
+
+      <div class="field mb-4 w-full">
+        <select
+          id="assignedTo"
+          class="w-full text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round outline-none focus:border-primary"
+          style="appearance: auto"
+          formControlName="assignedTo"
         >
           <option>Seleccione un tag</option>
           <option *ngFor="let tag of tags" value="{{ tag._id }}">
@@ -97,13 +97,6 @@
       <p-button type="submit" severity="warning" class="mr-4">Enviar</p-button>
       <p-toast></p-toast>
       <p-confirmPopup></p-confirmPopup>
-      <p-button
-        (click)="confirm($event)"
-        icon="pi pi-times"
-        label="Delete"
-        severity="danger"
-        type="button"
-      ></p-button>
     </div>
 
     <div class="text-orange-500 mt-1 text-center">

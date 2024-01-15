@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 import { AuthService } from '../../auth/services/auth.service';
 import { environment } from 'src/environments/environment';
+import { Observable } from 'rxjs';
 
 const base_url = environment.base_url;
 
@@ -12,7 +12,7 @@ const base_url = environment.base_url;
 export class DashboardService {
   constructor(
     private http: HttpClient,
-    private router: Router,
+
     private authService: AuthService
   ) {}
 
@@ -20,18 +20,21 @@ export class DashboardService {
 
   public desde = 0;
 
-  getAllTask() {
+  getAllTasks(assignedTo?: string): Observable<Object> {
+    if (assignedTo) {
+      return this.http.get(`${base_url}/tasks?&assignedTo=${assignedTo}`);
+    }
     return this.http.get(`${base_url}/tasks`);
   }
 
-  getUserTaskById() {
-    return this.http.get(`${base_url}/users/${this.uid}`);
+  getUserTaskById(uid: string) {
+    return this.http.get(`${base_url}/users/${uid}`);
   }
   getTaskById(id: string) {
     return this.http.get(`${base_url}/tasks/${id}`);
   }
 
-  upDatetasById(id: string, formData: any) {
+  updateTaskById(id: string, formData: any) {
     return this.http.patch(`${base_url}/tasks/${id}`, formData);
   }
   deleteTask(id: string) {
@@ -39,5 +42,9 @@ export class DashboardService {
   }
   getAllTags() {
     return this.http.get(`${base_url}/tags`);
+  }
+
+  createTask(formData: any) {
+    return this.http.post(`${base_url}/tasks`, formData);
   }
 }

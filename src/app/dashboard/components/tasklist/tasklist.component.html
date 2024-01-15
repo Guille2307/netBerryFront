@@ -1,12 +1,12 @@
-<div class="m-5 h-screen" [ngClass]="{ 'h-screen': dimention < 5 }">
-  <div *ngIf="dimention <= 0">
+<div class="m-5 h-screen" [ngClass]="{ 'h-screen': count < 2 }">
+  <div *ngIf="count <= 0">
     <h1 class="text-orange-500">No hay tareas</h1>
     <div
       class="bg-cover bg-center border-primary-500 border-round h-30rem"
       style="background-image: url('assets/image/loginBack.jpg')"
     ></div>
   </div>
-  <p-dataView #dv [value]="task" *ngIf="dimention > 0">
+  <p-dataView #dv [value]="tasks" *ngIf="count > 0">
     <ng-template pTemplate="list" let-task>
       <div class="grid grid-nogutter">
         <div class="col-12" *ngFor="let item of task; let first = first">
@@ -25,9 +25,9 @@
                 </div>
                 <p>{{ item.description }}</p>
 
-                <div>
+                <div *ngFor="let tag of item.tags">
                   <p-tag
-                    *ngFor="let tag of item.tags"
+                    *ngIf="tag"
                     [value]="tag.name"
                     severity="success"
                     class="mr-1"
@@ -54,7 +54,7 @@
                   </span>
                 </div>
                 <div>
-                  <span class="font-semibold" *ngIf="item.assignedTo.name"
+                  <span class="font-semibold" *ngIf="item.assignedTo"
                     >Asignada a : {{ item.assignedTo.name }}</span
                   >
                 </div>

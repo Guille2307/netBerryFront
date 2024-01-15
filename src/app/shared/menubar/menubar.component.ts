@@ -16,10 +16,12 @@ export class MenubarComponent {
       {
         label: 'Tareas',
         icon: 'pi pi-fw pi-file',
+
         items: [
           {
             label: 'Nueva tarea',
             icon: 'pi pi-fw pi-plus',
+            routerLink: 'newtask',
           },
           {
             label: 'Mis tareas',

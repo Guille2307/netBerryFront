@@ -1,4 +1,4 @@
-<div class="m-5 h-screen" [ngClass]="{ 'h-screen': dimention < 5 }">
+<div class="m-5 h-screen" [ngClass]="{ 'h-screen': dimention < 2 }">
   <div class="mt-7 mb-7 flex justify-content-end">
     <p-button
       icon="pi pi-arrow-left"
@@ -15,7 +15,7 @@
     ></div>
   </div>
 
-  <p-dataView #dv [value]="task" *ngIf="dimention > 0">
+  <p-dataView #dv [value]="tasks" *ngIf="dimention > 0">
     <ng-template pTemplate="list" let-task>
       <div class="grid grid-nogutter">
         <div class="col-12" *ngFor="let item of task; let first = first">

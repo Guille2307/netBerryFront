@@ -19,13 +19,13 @@ export class TasklistdetailComponent implements OnInit {
   public selectedStatus: any | undefined;
   public users: User[] = [];
   public task: Task[] = [];
-  public tags: Tag[] = [];
+  public tags: any[] = [];
   public editTaskForm = this.fb.group({
     title: ['', [Validators.required]],
     description: ['', [Validators.required]],
-    status: [''],
-    assignedTo: [''],
-    tags: [''],
+    status: [],
+    assignedTo: [],
+    tags: [],
   });
 
   get currentTask(): Task {
@@ -44,7 +44,11 @@ export class TasklistdetailComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.statusOption = [{ name: 'En progreso' }, { name: 'Finalizada' }];
+    this.statusOption = [
+      { name: 'Por asignar' },
+      { name: 'En progreso' },
+      { name: 'Finalizada' },
+    ];
     this.activatedRoute.params.subscribe((resp) => {
       this.id = resp['id'];
     });
@@ -56,12 +60,12 @@ export class TasklistdetailComponent implements OnInit {
     this.dashboardService.getAllTags().subscribe((tags: any) => {
       this.tags = tags.tags;
     });
-    this.refillFom();
+    this.refillForm();
   }
 
-  refillFom() {
-    this.dashboardService.getTaskById(this.id).subscribe((task: any) => {
-      this.editTaskForm.reset(task.seenTas);
+  refillForm() {
+    this.dashboardService.getTaskById(this.id).subscribe((resp: any) => {
+      this.editTaskForm.reset(resp.task);
     });
   }
 
@@ -101,16 +105,23 @@ export class TasklistdetailComponent implements OnInit {
       return;
     }
 
-    this.messageService.add({
-      severity: 'warn',
-      summary: 'Success',
-      detail: 'Tarea editada con éxito',
+    this.dashboardService.updateTaskById(this.id, this.currentTask).subscribe({
+      next: () => {
+        this.messageService.add({
+          severity: 'warn',
+          summary: 'Success',
+          detail: 'Tarea editada con éxito',
+        });
+      },
+      error: (err) => {
+        this.messageService.add({
+          severity: 'Error',
+          summary: 'Error',
+          detail: err.error.message,
+          life: 3000,
+        });
+      },
     });
-    this.dashboardService
-      .upDatetasById(this.id, this.currentTask)
-      .subscribe((resp) => {
-        console.log(resp);
-      });
     setTimeout(() => {
       this.router.navigateByUrl('/dashboard');
     }, 1500);

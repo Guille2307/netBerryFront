@@ -8,9 +8,9 @@ import { Task } from '../../interfaces/userByIdResponse.interface';
   styleUrls: ['./tasklist.component.scss'],
 })
 export class TasklistComponent {
-  public task!: Task[];
+  public tasks!: Task[];
   public visible: boolean = false;
-  public dimention!: number;
+  public count!: number;
   showDialog() {
     this.visible = true;
   }
@@ -18,9 +18,9 @@ export class TasklistComponent {
   constructor(private dashboardService: DashboardService) {}
 
   ngOnInit() {
-    this.dashboardService.getAllTask().subscribe((resp: any) => {
-      this.task = resp.task;
-      this.dimention = this.task.length;
+    this.dashboardService.getAllTasks().subscribe((resp: any) => {
+      this.tasks = resp.tasks;
+      this.count = this.tasks.length;
     });
   }
 }

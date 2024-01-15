@@ -5,11 +5,16 @@ import { TasklistComponent } from './components/tasklist/tasklist.component';
 import { MyTasksComponent } from './components/my-tasks/my-tasks.component';
 import { TasklistdetailComponent } from './components/tasklistdetail/tasklistdetail.component';
 import { MytaskeditComponent } from './components/mytaskedit/mytaskedit.component';
+import { NewTaskComponent } from './components/new-task/new-task.component';
 
 const routes: Routes = [
   {
     path: '',
     component: TasklistComponent,
+  },
+  {
+    path: 'newtask',
+    component: NewTaskComponent,
   },
   {
     path: 'mytask',
