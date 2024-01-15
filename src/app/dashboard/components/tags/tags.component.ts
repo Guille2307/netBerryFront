@@ -32,8 +32,8 @@ export class TagsComponent {
     this.dashboardService.newTag(this.tagForm.value).subscribe({
       next: (resp) => {
         this.messageService.add({
-          severity: 'error',
-          summary: 'Error',
+          severity: 'Warn',
+          summary: 'Successful',
           detail: 'Tag creado Correctamente',
         });
         this.router.navigateByUrl('/dashboard');

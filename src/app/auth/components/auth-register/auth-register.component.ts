@@ -34,7 +34,15 @@ export class AuthRegisterComponent {
     }
     this.authService.createUser(this.registerForm.value).subscribe({
       next: (resp) => {
-        this.router.navigateByUrl('/login');
+        this.messageService.add({
+          severity: 'warn',
+          summary: 'Successful',
+          detail: 'Usuario Creado',
+          life: 2500,
+        });
+        setTimeout(() => {
+          this.router.navigateByUrl('login');
+        }, 1500);
       },
       error: (err) => {
         this.messageService.add({
