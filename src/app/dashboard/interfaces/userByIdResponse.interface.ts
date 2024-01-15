@@ -19,6 +19,6 @@ export interface Task {
 export interface Tag {
   _id: string;
   name: string;
-  tasks: Tag[];
+  tasks?: string;
   __v: number;
 }

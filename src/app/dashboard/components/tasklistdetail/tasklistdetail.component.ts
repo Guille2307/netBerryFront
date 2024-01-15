@@ -19,7 +19,7 @@ export class TasklistdetailComponent implements OnInit {
   public selectedStatus: any | undefined;
   public users: User[] = [];
   public task: Task[] = [];
-  public tags: any[] = [];
+  public tags: Tag[] = [];
   public editTaskForm = this.fb.group({
     title: ['', [Validators.required]],
     description: ['', [Validators.required]],

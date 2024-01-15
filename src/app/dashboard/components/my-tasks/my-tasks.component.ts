@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DashboardService } from '../../services/dashboard.service';
-import { Task } from '../../interfaces/userByIdResponse.interface';
+import { Tag, Task } from '../../interfaces/userByIdResponse.interface';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { Observable } from 'rxjs';
 
@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
   styleUrls: ['./my-tasks.component.scss'],
 })
 export class MyTasksComponent implements OnInit {
-  public tasks!: any[];
+  public tasks!: Task[];
   public uid!: string;
   public dimention!: number;
   constructor(

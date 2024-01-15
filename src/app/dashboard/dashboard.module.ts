@@ -14,6 +14,8 @@ import { MytaskeditComponent } from './components/mytaskedit/mytaskedit.componen
 import { ReactiveFormsModule } from '@angular/forms';
 import { PipesModule } from './pipes/pipes.module';
 import { NewTaskComponent } from './components/new-task/new-task.component';
+import { TagsComponent } from './components/tags/tags.component';
+import { EditUserComponent } from './components/edit-user/edit-user.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,8 @@ import { NewTaskComponent } from './components/new-task/new-task.component';
     TasklistdetailComponent,
     MytaskeditComponent,
     NewTaskComponent,
+    TagsComponent,
+    EditUserComponent,
   ],
   imports: [
     CommonModule,

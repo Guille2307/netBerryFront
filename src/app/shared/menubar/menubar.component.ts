@@ -42,6 +42,7 @@ export class MenubarComponent {
           {
             label: 'Editar usuario',
             icon: 'pi pi-fw pi-user-plus',
+            routerLink: 'edituser',
           },
         ],
       },
@@ -52,6 +53,7 @@ export class MenubarComponent {
           {
             label: 'Nuevo tag',
             icon: 'pi pi-fw pi-pencil',
+            routerLink: '/dashboard/tags',
           },
         ],
       },

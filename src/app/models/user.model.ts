@@ -7,10 +7,10 @@ export class User {
   constructor(
     public name: string,
     public email: string,
-    public password?: string,
+    public password: string,
     public task?: Task[],
     public img?: string,
-    public uid?: string
+    public _id?: string
   ) {}
 
   get imageUrl() {

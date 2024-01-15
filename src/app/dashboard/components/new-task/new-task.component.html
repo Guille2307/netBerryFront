@@ -69,7 +69,7 @@
           formControlName="tags"
         >
           <option>Seleccione un usuario</option>
-          <option *ngFor="let user of users" value="{{ user.uid }}">
+          <option *ngFor="let user of users" value="{{ user._id }}">
             {{ user.name }}
           </option>
         </select>

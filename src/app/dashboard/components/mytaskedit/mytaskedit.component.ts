@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Tag } from 'primeng/tag';
+
 import { User } from 'src/app/models/user.model';
-import { Task } from '../../interfaces/userByIdResponse.interface';
+import { Tag, Task } from '../../interfaces/userByIdResponse.interface';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { DashboardService } from '../../services/dashboard.service';
@@ -21,7 +21,7 @@ export class MytaskeditComponent implements OnInit {
   public selectedStatus: any | undefined;
   public users: User[] = [];
   public task: Task[] = [];
-  public tags: any[] = [];
+  public tags: Tag[] = [];
   public editMyTaskForm = this.fb.group({
     title: ['', [Validators.required]],
     description: ['', [Validators.required]],

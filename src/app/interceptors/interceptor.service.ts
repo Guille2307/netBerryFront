@@ -20,8 +20,6 @@ export class InterceptorService implements HttpInterceptor {
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    console.log('Paso por el interceptor');
-
     const token = localStorage.getItem('token') || '';
 
     const headers = new HttpHeaders({ 'x-token': token });

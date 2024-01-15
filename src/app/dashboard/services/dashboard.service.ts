@@ -47,4 +47,11 @@ export class DashboardService {
   createTask(formData: any) {
     return this.http.post(`${base_url}/tasks`, formData);
   }
+
+  newTag(formData: any) {
+    return this.http.post(`${base_url}/tags`, formData);
+  }
+  editUser(id: string, formData: any) {
+    return this.http.put(`${base_url}/users/${id}`, formData);
+  }
 }

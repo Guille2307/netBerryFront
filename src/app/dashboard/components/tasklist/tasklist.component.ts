@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DashboardService } from '../../services/dashboard.service';
 import { Task } from '../../interfaces/userByIdResponse.interface';
 
@@ -7,7 +7,7 @@ import { Task } from '../../interfaces/userByIdResponse.interface';
   templateUrl: './tasklist.component.html',
   styleUrls: ['./tasklist.component.scss'],
 })
-export class TasklistComponent {
+export class TasklistComponent implements OnInit {
   public tasks!: Task[];
   public visible: boolean = false;
   public count!: number;

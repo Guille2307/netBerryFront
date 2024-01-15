@@ -22,7 +22,7 @@ export class AuthService {
   }
 
   get uid(): string {
-    return this.user.uid || '';
+    return this.user._id || '';
   }
 
   createUser(formData: any) {
@@ -47,8 +47,8 @@ export class AuthService {
       tap((user: any) => localStorage.setItem('token', user.token)),
       tap((user) => (this.user = user.user)),
       map((user) => {
-        const { name, email, task, uid, img = '' } = user.user;
-        this.user = new User(name, email, '', task, img, uid);
+        const { name, email, task, _id, img = '' } = user.user;
+        this.user = new User(name, email, '', task, img, _id);
         localStorage.setItem('token', user.token);
         return true;
       }),

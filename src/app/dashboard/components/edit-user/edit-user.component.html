@@ -1,24 +1,21 @@
 <p-toast></p-toast>
-<form (ngSubmit)="createUser()" [formGroup]="registerForm" autocomplete="true">
+<form
+  (ngSubmit)="postEditForm()"
+  [formGroup]="editUserForm"
+  autocomplete="true"
+>
   <div
     class="grid flex-column justify-content-center align-items-center surface-100 h-screen"
   >
     <div>
-      <img
-        class="border-round-lg"
-        src="assets/tasks.jpg"
-        alt=" logo Netberry  "
-      />
-    </div>
-    <div>
-      <h2 class="text-orange-500 mt-6">Registro</h2>
+      <h2 class="text-orange-500 mt-6">Editar usuario</h2>
     </div>
     <div>
       <div class="field">
         <label for="name">Nombre</label>
         <input
-          placeholder="Nombre"
           formControlName="name"
+          placeholder="Nombre"
           id="name"
           type="text"
           class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
@@ -27,21 +24,21 @@
       <div class="field">
         <label for="email">E-mail</label>
         <input
-          placeholder="Email"
           formControlName="email"
+          placeholder="Email"
           id="email"
           type="email"
           class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
         />
       </div>
-      <div class="field">
+      <div class="field" *ngIf="id">
         <label>Password</label>
         <div class="card flex justify-content-center">
           <p-password
+            [disabled]="true"
             value="value"
             [toggleMask]="true"
             formControlName="password"
-            autocomplete="true"
           ></p-password>
         </div>
       </div>
@@ -49,12 +46,7 @@
     <div class="my-3">
       <p-button type="submit" severity="warning">Enviar</p-button>
     </div>
-    <div>
-      <p>
-        Login
-        <a class="cursor-pointer text-orange-500" routerLink="/login">Aquí</a>
-      </p>
-    </div>
+    <div></div>
     <div class="text-orange-500 mt-1 text-center">
       <p *ngIf="validField('name')">El nombre es obligatorio</p>
       <p *ngIf="validField('email')">El email es obligatorio</p>

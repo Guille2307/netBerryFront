@@ -12,9 +12,7 @@ export class HiUserComponent implements OnInit {
   public imgUrl = '';
   constructor(public authService: AuthService) {}
 
-  ngOnInit(): void {
-    console.log(this.imgUrl);
-  }
+  ngOnInit(): void {}
 
   public visible: boolean = false;
 }
