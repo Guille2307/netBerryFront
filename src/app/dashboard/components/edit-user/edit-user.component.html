@@ -31,17 +31,6 @@
           class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
         />
       </div>
-      <div class="field" *ngIf="id">
-        <label>Password</label>
-        <div class="card flex justify-content-center">
-          <p-password
-            [disabled]="true"
-            value="value"
-            [toggleMask]="true"
-            formControlName="password"
-          ></p-password>
-        </div>
-      </div>
     </div>
     <div class="my-3">
       <p-button type="submit" severity="warning">Enviar</p-button>
