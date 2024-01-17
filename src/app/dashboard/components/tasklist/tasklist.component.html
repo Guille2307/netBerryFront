@@ -1,3 +1,14 @@
+<div
+  class="card flex justify-content-center align-items-center h-screen"
+  *ngIf="!tasks"
+>
+  <p-progressSpinner
+    styleClass="w-4rem h-4rem"
+    strokeWidth="8"
+    fill="var(--surface-ground)"
+    animationDuration=".5s"
+  ></p-progressSpinner>
+</div>
 <div class="m-5 h-screen" [ngClass]="{ 'h-screen': count < 2 }">
   <div *ngIf="count <= 0">
     <h1 class="text-orange-500">No hay tareas</h1>

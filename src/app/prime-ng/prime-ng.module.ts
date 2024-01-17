@@ -14,6 +14,8 @@ import { RatingModule } from 'primeng/rating';
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { DropdownModule } from 'primeng/dropdown';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
+
 @NgModule({
   exports: [
     ButtonModule,
@@ -30,6 +32,7 @@ import { DropdownModule } from 'primeng/dropdown';
     ConfirmPopupModule,
     InputTextareaModule,
     DropdownModule,
+    ProgressSpinnerModule,
   ],
 })
 export class PrimeNgModule {}
