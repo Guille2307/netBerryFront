@@ -1,41 +1,53 @@
-<div class="mt-7 mr-1 flex justify-content-end">
-  <p-button
-    icon="pi pi-arrow-left"
-    label="Volver"
-    severity="warning"
-    routerLink="/dashboard"
-  ></p-button>
-</div>
-
 <p-toast></p-toast>
 
-<form (ngSubmit)="newTag()" [formGroup]="tagForm" autocomplete="true">
-  <div
-    class="grid flex-column justify-content-center align-items-center surface-100 h-screen"
-  >
-    <div>
-      <h2 class="text-orange-500 mt-6">Nuevo tag</h2>
-    </div>
-    <div>
-      <div class="field">
-        <label for="name">Nombre</label>
-        <input
-          formControlName="name"
-          placeholder="Nombre"
-          id="name"
-          type="text"
-          class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
-        />
-      </div>
-
-      <div class="my-3">
-        <p-button type="submit" severity="warning">Enviar</p-button>
-      </div>
-
-      <div class="text-orange-500 mt-1 text-center">
-        <p *ngIf="validField('name')">El nombre es obligatorio</p>
-        <p *ngIf="validField('task')">El la tarea es obligatoria</p>
-      </div>
-    </div>
+<div
+  class="grid justify-content-center align-content-center align-items-center m-0"
+>
+  <div class="sm:col-12 md:col-6 lg:col-8 h-screen m-0">
+    <img
+      src="/assets/image/jason-goodman-bzqU01v-G54-unsplash.jpg"
+      alt="Equipo"
+    />
   </div>
-</form>
+  <div class="sm:col-12 md:col-6 lg:col-4 layout">
+    <form (ngSubmit)="newTag()" [formGroup]="tagForm" autocomplete="true">
+      <div class="flex justify-content-end">
+        <p-button
+          icon="pi pi-arrow-left"
+          label="Volver"
+          severity="warning"
+          routerLink="/dashboard"
+        ></p-button>
+      </div>
+
+      <div
+        class="grid flex-column justify-content-center align-items-center surface-100 h-screen"
+      >
+        <div>
+          <h2 class="text-orange-500 mt-6">Nuevo tag</h2>
+        </div>
+        <div>
+          <div class="field">
+            <label for="name">Nombre</label>
+            <input
+              formControlName="name"
+              placeholder="Nombre"
+              id="name"
+              type="text"
+              class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+            />
+          </div>
+
+          <div class="my-3">
+            <p-button type="submit" severity="warning">Enviar</p-button>
+          </div>
+
+          <div class="text-orange-500 mt-1 text-center">
+            <p *ngIf="validField('name')">El nombre es obligatorio</p>
+            <p *ngIf="validField('task')">El la tarea es obligatoria</p>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

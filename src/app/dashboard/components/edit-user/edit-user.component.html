@@ -1,45 +1,63 @@
-<p-toast></p-toast>
-<form
-  (ngSubmit)="postEditForm()"
-  [formGroup]="editUserForm"
-  autocomplete="true"
+<div
+  class="grid h-full justify-content-center align-content-center align-items-center m-0"
 >
-  <div
-    class="grid flex-column justify-content-center align-items-center surface-100 h-screen"
-  >
-    <div>
-      <h2 class="text-orange-500 mt-6">Editar usuario</h2>
-    </div>
-    <div>
-      <div class="field">
-        <label for="name">Nombre</label>
-        <input
-          formControlName="name"
-          placeholder="Nombre"
-          id="name"
-          type="text"
-          class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
-        />
-      </div>
-      <div class="field">
-        <label for="email">E-mail</label>
-        <input
-          formControlName="email"
-          placeholder="Email"
-          id="email"
-          type="email"
-          class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
-        />
-      </div>
-    </div>
-    <div class="my-3">
-      <p-button type="submit" severity="warning">Enviar</p-button>
-    </div>
-    <div></div>
-    <div class="text-orange-500 mt-1 text-center">
-      <p *ngIf="validField('name')">El nombre es obligatorio</p>
-      <p *ngIf="validField('email')">El email es obligatorio</p>
-      <p *ngIf="validField('password')">El password es obligatorio</p>
-    </div>
+  <div class="sm:col-12 md:col-6 lg:col-8 h-screen">
+    <img src="/assets/image/surface--ZFvSWK4L28-unsplash.jpg" alt="Equipo" />
   </div>
-</form>
+  <div class="sm:col-12 md:col-6 lg:col-4 layout">
+    <div class="flex justify-content-end">
+      <p-button
+        icon="pi pi-arrow-left"
+        label="Volver"
+        severity="warning"
+        routerLink="/dashboard"
+      ></p-button>
+    </div>
+    <p-toast></p-toast>
+    <form
+      (ngSubmit)="postEditForm()"
+      [formGroup]="editUserForm"
+      autocomplete="true"
+      class="h-full"
+    >
+      <div
+        class="grid flex-column justify-content-center align-items-center surface-100 h-screen"
+      >
+        <div>
+          <h2 class="text-orange-500 mt-6">Editar usuario</h2>
+        </div>
+        <div>
+          <div class="field">
+            <label for="name">Nombre</label>
+            <input
+              formControlName="name"
+              placeholder="Nombre"
+              id="name"
+              type="text"
+              class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+            />
+          </div>
+          <div class="field">
+            <label for="email">E-mail</label>
+            <input
+              formControlName="email"
+              placeholder="Email"
+              id="email"
+              type="email"
+              class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+            />
+          </div>
+        </div>
+        <div class="my-3">
+          <p-button type="submit" severity="warning">Enviar</p-button>
+        </div>
+        <div></div>
+        <div class="text-orange-500 mt-1 text-center">
+          <p *ngIf="validField('name')">El nombre es obligatorio</p>
+          <p *ngIf="validField('email')">El email es obligatorio</p>
+          <p *ngIf="validField('password')">El password es obligatorio</p>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
