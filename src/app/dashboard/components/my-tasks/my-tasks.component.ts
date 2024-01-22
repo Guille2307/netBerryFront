@@ -12,7 +12,7 @@ import { Observable } from 'rxjs';
 export class MyTasksComponent implements OnInit {
   public tasks!: Task[];
   public uid!: string;
-  public dimention!: number;
+  public count!: number;
   constructor(
     private authService: AuthService,
     private dashboardService: DashboardService
@@ -22,7 +22,7 @@ export class MyTasksComponent implements OnInit {
     this.uid = this.authService.uid;
     this.dashboardService.getAllTasks(this.uid).subscribe((resp: any) => {
       this.tasks = resp.tasks;
-      this.dimention = resp.tasks.length;
+      this.count = resp.tasks.length;
     });
   }
 }

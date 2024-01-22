@@ -10,7 +10,7 @@
   ></p-progressSpinner>
 </div>
 
-<div class="m-5 h-screen" [ngClass]="{ 'h-screen': dimention < 2 }">
+<div class="m-5 h-screen" [ngClass]="{ 'h-screen': count < 5 }">
   <div class="mt-7 mb-7 flex justify-content-end">
     <p-button
       icon="pi pi-arrow-left"
@@ -19,7 +19,7 @@
       routerLink="/dashboard"
     ></p-button>
   </div>
-  <div *ngIf="dimention <= 0">
+  <div *ngIf="count <= 0">
     <h1 class="text-orange-500">No tienes tareas asignadas</h1>
     <div
       class="bg-cover bg-center border-primary-500 border-round h-30rem"
@@ -27,7 +27,7 @@
     ></div>
   </div>
 
-  <p-dataView #dv [value]="tasks" *ngIf="dimention > 0">
+  <p-dataView #dv [value]="tasks" *ngIf="count > 0">
     <ng-template pTemplate="list" let-task>
       <div class="grid grid-nogutter">
         <div class="col-12" *ngFor="let item of task; let first = first">
