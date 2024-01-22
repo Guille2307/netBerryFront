@@ -63,10 +63,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "netberrytaskFront:build:production"
+              "buildTarget": "netberrytaskFront:build:production"
             },
             "development": {
-              "browserTarget": "netberrytaskFront:build:development"
+              "buildTarget": "netberrytaskFront:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -74,7 +74,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "netberrytaskFront:build"
+            "buildTarget": "netberrytaskFront:build"
           }
         },
         "test": {
