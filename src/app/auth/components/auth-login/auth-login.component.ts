@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { MessageService } from 'primeng/api';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'auth-login',
@@ -10,8 +11,9 @@ import { MessageService } from 'primeng/api';
   styleUrls: ['./auth-login.component.scss'],
   providers: [MessageService],
 })
-export class AuthLoginComponent {
+export class AuthLoginComponent implements OnDestroy {
   public value!: string;
+  public loginSuscription?: Subscription;
 
   public FormSubmitted = false;
 
@@ -24,34 +26,33 @@ export class AuthLoginComponent {
   constructor(
     private router: Router,
     private fb: FormBuilder,
-    private authService: AuthService,
+    public authService: AuthService,
     private messageService: MessageService
   ) {}
 
+  ngOnDestroy(): void {
+    this.loginSuscription?.unsubscribe();
+  }
+
   login() {
     this.FormSubmitted = true;
+
     if (this.loginForm.invalid) {
       return;
     }
-    this.authService.login(this.loginForm.value).subscribe({
-      next: (resp) => {
-        this.router.navigateByUrl('/dashboard');
-      },
-      error: (err) => {
-        this.messageService.add({
-          severity: 'error',
-          summary: 'Error',
-          detail: err.error.msg,
-        });
-      },
-    });
-  }
-
-  validField(field: string) {
-    if (this.loginForm.get(field)?.invalid && this.FormSubmitted) {
-      return true;
-    } else {
-      return false;
-    }
+    this.loginSuscription = this.authService
+      .login(this.loginForm.value)
+      .subscribe({
+        next: (resp) => {
+          this.router.navigateByUrl('/dashboard');
+        },
+        error: (err) => {
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: err.error.msg,
+          });
+        },
+      });
   }
 }

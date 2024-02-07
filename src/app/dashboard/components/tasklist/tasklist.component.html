@@ -9,7 +9,7 @@
     animationDuration=".5s"
   ></p-progressSpinner>
 </div>
-<div class="m-5 h-screen" [ngClass]="{ 'h-screen': count < 5 }">
+<div class="m-5 h-screen" [ngClass]="{ 'h-screen': count < 3 }">
   <div *ngIf="count <= 0">
     <h1 class="text-orange-500">No hay tareas</h1>
     <div
@@ -75,7 +75,7 @@
               <p-button
                 label="Detalles"
                 severity="warning"
-                routerLink="edit/detaildashbord/{{ item._id }}"
+                routerLink="edit/{{ item._id }}"
               ></p-button>
             </div>
           </div>

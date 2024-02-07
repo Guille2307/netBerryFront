@@ -15,7 +15,7 @@
     class="grid flex-column justify-content-center align-items-center surface-100 h-screen"
   >
     <div>
-      <h2 class="text-orange-500">Editar tarea</h2>
+      <h2 class="text-orange-500">{{ id ? "Editar Tarea" : "Nueva tarea" }}</h2>
     </div>
     <div>
       <div class="field">
@@ -98,6 +98,7 @@
       <p-toast></p-toast>
       <p-confirmPopup></p-confirmPopup>
       <p-button
+        *ngIf="id"
         (click)="confirm($event)"
         icon="pi pi-times"
         label="Delete"
@@ -107,8 +108,24 @@
     </div>
 
     <div class="text-orange-500 mt-1 text-center">
-      <p *ngIf="validField('title')">El titulo es obligatorio</p>
-      <p *ngIf="validField('description')">La descripción es obligatorio</p>
+      <p
+        *ngIf="
+          dashboardService.validField('title', editTaskForm, FormSubmitted)
+        "
+      >
+        El titulo es obligatorio
+      </p>
+      <p
+        *ngIf="
+          dashboardService.validField(
+            'description',
+            editTaskForm,
+            FormSubmitted
+          )
+        "
+      >
+        La descripción es obligatorio
+      </p>
     </div>
   </div>
 </form>

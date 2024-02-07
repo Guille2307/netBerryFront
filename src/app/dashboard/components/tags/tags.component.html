@@ -41,8 +41,13 @@
           </div>
 
           <div class="text-orange-500 mt-1 text-center">
-            <p *ngIf="validField('name')">El nombre es obligatorio</p>
-            <p *ngIf="validField('task')">El la tarea es obligatoria</p>
+            <p
+              *ngIf="
+                dashboardService.validField('name', tagForm, FormSubmitted)
+              "
+            >
+              El nombre es obligatorio
+            </p>
           </div>
         </div>
       </div>

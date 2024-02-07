@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { MessageService } from 'primeng/api';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'auth-register',
@@ -10,9 +11,10 @@ import { MessageService } from 'primeng/api';
   styleUrls: ['./auth-register.component.scss'],
   providers: [MessageService],
 })
-export class AuthRegisterComponent {
+export class AuthRegisterComponent implements OnDestroy {
   public value!: string;
   public FormSubmitted = false;
+  public registerSuscription?: Subscription;
 
   public registerForm = this.fb.group({
     name: ['', [Validators.required, Validators.minLength(2)]],
@@ -23,42 +25,37 @@ export class AuthRegisterComponent {
   constructor(
     private router: Router,
     private fb: FormBuilder,
-    private authService: AuthService,
+    public authService: AuthService,
     private messageService: MessageService
   ) {}
+  ngOnDestroy(): void {
+    this.registerSuscription?.unsubscribe();
+  }
 
   createUser() {
     this.FormSubmitted = true;
     if (this.registerForm.invalid) {
       return;
     }
-    this.authService.createUser(this.registerForm.value).subscribe({
-      next: (resp) => {
-        this.messageService.add({
-          severity: 'warn',
-          summary: 'Successful',
-          detail: 'Usuario Creado',
-          life: 2500,
-        });
-        setTimeout(() => {
+    this.registerSuscription = this.authService
+      .createUser(this.registerForm.value)
+      .subscribe({
+        next: (resp) => {
+          this.messageService.add({
+            severity: 'warn',
+            summary: 'Successful',
+            detail: 'Usuario Creado',
+            life: 2500,
+          });
           this.router.navigateByUrl('login');
-        }, 1500);
-      },
-      error: (err) => {
-        this.messageService.add({
-          severity: 'error',
-          summary: 'Error',
-          detail: err.error.msg,
-        });
-      },
-    });
-  }
-
-  validField(field: string) {
-    if (this.registerForm.get(field)?.invalid && this.FormSubmitted) {
-      return true;
-    } else {
-      return false;
-    }
+        },
+        error: (err) => {
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: err.error.msg,
+          });
+        },
+      });
   }
 }

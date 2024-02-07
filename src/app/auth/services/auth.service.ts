@@ -6,6 +6,7 @@ import { environment } from 'src/environments/environment';
 
 import { User } from 'src/app/models/user.model';
 import { Router } from '@angular/router';
+import { FormGroup } from '@angular/forms';
 
 const base_url = environment.base_url;
 
@@ -67,5 +68,9 @@ export class AuthService {
   }
   getUserById(id: string) {
     return this.http.get(`${base_url}/users/${id}`);
+  }
+
+  validField(field: string, form: FormGroup, formSubmitted: boolean) {
+    return form.get(field)?.invalid && formSubmitted ? true : false;
   }
 }

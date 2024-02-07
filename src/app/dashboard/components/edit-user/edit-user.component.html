@@ -54,9 +54,31 @@
         </div>
         <div></div>
         <div class="text-orange-500 mt-1 text-center">
-          <p *ngIf="validField('name')">El nombre es obligatorio</p>
-          <p *ngIf="validField('email')">El email es obligatorio</p>
-          <p *ngIf="validField('password')">El password es obligatorio</p>
+          <p
+            *ngIf="
+              dashboardService.validField('name', editUserForm, FormSubmitted)
+            "
+          >
+            El nombre es obligatorio
+          </p>
+          <p
+            *ngIf="
+              dashboardService.validField('email', editUserForm, FormSubmitted)
+            "
+          >
+            El email es obligatorio
+          </p>
+          <p
+            *ngIf="
+              dashboardService.validField(
+                'password',
+                editUserForm,
+                FormSubmitted
+              )
+            "
+          >
+            El password es obligatorio
+          </p>
         </div>
       </div>
     </form>

@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { AuthService } from '../../auth/services/auth.service';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
+import { FormGroup } from '@angular/forms';
 
 const base_url = environment.base_url;
 
@@ -53,5 +54,8 @@ export class DashboardService {
   }
   editUser(id: string, formData: any) {
     return this.http.put(`${base_url}/users/${id}`, formData);
+  }
+  validField(field: string, form: FormGroup, formSubmitted: boolean) {
+    return form.get(field)?.invalid && formSubmitted ? true : false;
   }
 }

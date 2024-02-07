@@ -10,7 +10,7 @@
   ></p-progressSpinner>
 </div>
 
-<div class="m-5 h-screen" [ngClass]="{ 'h-screen': count < 5 }">
+<div class="m-5 h-screen" [ngClass]="{ 'h-screen': count < 3 }">
   <div class="mt-7 mb-7 flex justify-content-end">
     <p-button
       icon="pi pi-arrow-left"
@@ -79,7 +79,7 @@
               <p-button
                 label="Detalles"
                 severity="warning"
-                routerLink="edit/mytaskEdit/{{ item._id }}"
+                routerLink="edit/{{ item._id }}"
               ></p-button>
             </div>
           </div>

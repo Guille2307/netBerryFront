@@ -56,9 +56,17 @@
       </p>
     </div>
     <div class="text-orange-500 mt-1 text-center">
-      <p *ngIf="validField('name')">El nombre es obligatorio</p>
-      <p *ngIf="validField('email')">El email es obligatorio</p>
-      <p *ngIf="validField('password')">El password es obligatorio</p>
+      <p *ngIf="authService.validField('name', registerForm, FormSubmitted)">
+        El nombre es obligatorio
+      </p>
+      <p *ngIf="authService.validField('email', registerForm, FormSubmitted)">
+        El email es obligatorio
+      </p>
+      <p
+        *ngIf="authService.validField('password', registerForm, FormSubmitted)"
+      >
+        El password es obligatorio
+      </p>
     </div>
   </div>
 </form>

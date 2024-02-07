@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ConfirmationService, MessageService } from 'primeng/api';
@@ -6,13 +6,14 @@ import { Tag, Task } from '../../interfaces/userByIdResponse.interface';
 import { DashboardService } from '../../services/dashboard.service';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { User } from 'src/app/models/user.model';
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-tasklistdetail',
   templateUrl: './tasklistdetail.component.html',
   styleUrls: ['./tasklistdetail.component.scss'],
   providers: [ConfirmationService, MessageService],
 })
-export class TasklistdetailComponent implements OnInit {
+export class TasklistdetailComponent implements OnInit, OnDestroy {
   public id!: string;
   public FormSubmitted = false;
   public statusOption: any[] | undefined;
@@ -20,10 +21,17 @@ export class TasklistdetailComponent implements OnInit {
   public users: User[] = [];
   public task: Task[] = [];
   public tags: Tag[] = [];
+  public activatedRouteSubcription?: Subscription;
+  public getUserSubcription?: Subscription;
+  public getAllTagsSubcription?: Subscription;
+  public getTaskByIdSubcription?: Subscription;
+  public deleteTaskSubcription?: Subscription;
+  public updateTaskByIdSubcription?: Subscription;
+  public createTaskSubcription?: Subscription;
   public editTaskForm = this.fb.group({
     title: ['', [Validators.required]],
     description: ['', [Validators.required]],
-    status: [],
+    status: ['Por asignar'],
     assignedTo: [],
     tags: [],
   });
@@ -39,9 +47,19 @@ export class TasklistdetailComponent implements OnInit {
     private fb: FormBuilder,
     private confirmationService: ConfirmationService,
     private messageService: MessageService,
-    private dashboardService: DashboardService,
+    public dashboardService: DashboardService,
     private authService: AuthService
   ) {}
+
+  ngOnDestroy(): void {
+    this.activatedRouteSubcription?.unsubscribe();
+    this.getUserSubcription?.unsubscribe();
+    this.getAllTagsSubcription?.unsubscribe();
+    this.getTaskByIdSubcription?.unsubscribe();
+    this.deleteTaskSubcription?.unsubscribe();
+    this.updateTaskByIdSubcription?.unsubscribe();
+    this.createTaskSubcription?.unsubscribe();
+  }
 
   ngOnInit(): void {
     this.statusOption = [
@@ -49,17 +67,26 @@ export class TasklistdetailComponent implements OnInit {
       { name: 'En progreso' },
       { name: 'Finalizada' },
     ];
-    this.activatedRoute.params.subscribe((resp) => {
-      this.id = resp['id'];
-    });
+    this.activatedRouteSubcription = this.activatedRoute.params.subscribe(
+      (resp) => {
+        this.id = resp['id'];
+      }
+    );
 
-    this.authService.getUser().subscribe((resp: any) => {
-      this.users = resp.users;
-    });
+    this.getUserSubcription = this.authService
+      .getUser()
+      .subscribe((resp: any) => {
+        this.users = resp.users;
+      });
 
-    this.dashboardService.getAllTags().subscribe((tags: any) => {
-      this.tags = tags.tags;
-    });
+    this.getAllTagsSubcription = this.dashboardService
+      .getAllTags()
+      .subscribe((tags: any) => {
+        this.tags = tags.tags;
+      });
+
+    if (!this.router.url.includes('edit')) return;
+
     this.refillForm();
   }
 
@@ -76,16 +103,16 @@ export class TasklistdetailComponent implements OnInit {
       icon: 'pi pi-info-circle',
       acceptButtonStyleClass: 'p-button-danger p-button-sm',
       accept: () => {
-        this.dashboardService.deleteTask(this.id).subscribe(() => {});
+        this.deleteTaskSubcription = this.dashboardService
+          .deleteTask(this.id)
+          .subscribe(() => {});
         this.messageService.add({
           severity: 'warn',
           summary: 'Confirmed',
           detail: 'Tarea Borrada',
           life: 3000,
         });
-        setTimeout(() => {
-          this.router.navigateByUrl('/dashboard');
-        }, 1500);
+        this.router.navigateByUrl('/dashboard');
       },
       reject: () => {
         this.messageService.add({
@@ -99,39 +126,52 @@ export class TasklistdetailComponent implements OnInit {
   }
 
   postAndConfirmation() {
-    console.log('aqui');
     this.FormSubmitted = true;
-    if (this.editTaskForm.invalid) {
-      return;
+    if (this.editTaskForm.invalid) return;
+
+    if (this.id) {
+      this.updateTaskByIdSubcription = this.dashboardService
+        .updateTaskById(this.id, this.currentTask)
+        .subscribe({
+          next: () => {
+            this.messageService.add({
+              severity: 'warn',
+              summary: 'Success',
+              detail: 'Tarea editada con éxito',
+            });
+          },
+          error: (err) => {
+            this.messageService.add({
+              severity: 'Error',
+              summary: 'Error',
+              detail: err.error.message,
+              life: 3000,
+            });
+          },
+        });
+    }
+    if (!this.id) {
+      this.createTaskSubcription = this.dashboardService
+        .createTask(this.editTaskForm.value)
+        .subscribe({
+          next: () => {
+            this.messageService.add({
+              severity: 'warn',
+              summary: 'Success',
+              detail: 'Creada tarea con exito',
+            });
+          },
+          error: (err) => {
+            this.messageService.add({
+              severity: 'Error',
+              summary: 'Error',
+              detail: err.error.message,
+              life: 3000,
+            });
+          },
+        });
     }
 
-    this.dashboardService.updateTaskById(this.id, this.currentTask).subscribe({
-      next: () => {
-        this.messageService.add({
-          severity: 'warn',
-          summary: 'Success',
-          detail: 'Tarea editada con éxito',
-        });
-      },
-      error: (err) => {
-        this.messageService.add({
-          severity: 'Error',
-          summary: 'Error',
-          detail: err.error.message,
-          life: 3000,
-        });
-      },
-    });
-    setTimeout(() => {
-      this.router.navigateByUrl('/dashboard');
-    }, 1500);
-  }
-
-  validField(field: string) {
-    if (this.editTaskForm.get(field)?.invalid && this.FormSubmitted) {
-      return true;
-    } else {
-      return false;
-    }
+    this.router.navigateByUrl('/dashboard');
   }
 }

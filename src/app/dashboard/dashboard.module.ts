@@ -10,10 +10,8 @@ import { TasklistComponent } from './components/tasklist/tasklist.component';
 import { MyTasksComponent } from './components/my-tasks/my-tasks.component';
 import { HttpClientModule } from '@angular/common/http';
 import { TasklistdetailComponent } from './components/tasklistdetail/tasklistdetail.component';
-import { MytaskeditComponent } from './components/mytaskedit/mytaskedit.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PipesModule } from './pipes/pipes.module';
-import { NewTaskComponent } from './components/new-task/new-task.component';
 import { TagsComponent } from './components/tags/tags.component';
 import { EditUserComponent } from './components/edit-user/edit-user.component';
 
@@ -24,8 +22,6 @@ import { EditUserComponent } from './components/edit-user/edit-user.component';
     TasklistComponent,
     MyTasksComponent,
     TasklistdetailComponent,
-    MytaskeditComponent,
-    NewTaskComponent,
     TagsComponent,
     EditUserComponent,
   ],
